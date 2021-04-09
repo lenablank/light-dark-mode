@@ -12,24 +12,14 @@ function imageMode(color) {
     image2.src = `img/undraw_adventure_map_${color}.svg`;
 }
 
-// dark mode styles
-function darkMode() {
-    nav.style.backgroundColor = 'rgb(0 0 0 / 50%';
-    textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+function toggleDarkLightMode(isDark) {
+    nav.style.backgroundColor = isDark ? 'rgb(0 0 0 / 50%' : 'rgb(255 255 255 / 50%';
+    textBox.style.backgroundColor = isDark ? 'rgb(255 255 255 / 50%)' : 'rgb(0 0 0 / 50%)';
     // console.log(toggleIcon.children);
-    toggleIcon.children[0].textContent = 'Dark Mode';
-    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
-    imageMode('dark');
-}
-
-// light mode styles
-function lightMode() {
-    nav.style.backgroundColor = 'rgb(255 255 255 / 50%';
-    textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
-    // console.log(toggleIcon.children);
-    toggleIcon.children[0].textContent = 'Light Mode';
+    toggleIcon.children[0].textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    isDark ? toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon') : 
     toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
-    imageMode('light');
+    isDark ? imageMode('dark') : imageMode('light');
 }
 
 // switch theme dynamically
@@ -38,11 +28,11 @@ function switchTheme(event) {
     if (event.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
-        darkMode();
+        toggleDarkLightMode(true);
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
-        lightMode();
+        toggleDarkLightMode(false);
     }
 }
 // event listener
@@ -55,6 +45,6 @@ if (currentTheme) {
 
     if (currentTheme === 'dark') {
         toggleSwitch.checked = true;
-        darkMode();
+        toggleDarkLightMode(true);
     }
 }
