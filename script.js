@@ -12,10 +12,20 @@ function darkMode() {
     textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
     // console.log(toggleIcon.children);
     toggleIcon.children[0].textContent = 'Dark Mode';
-    toggleIcon.children[1].classList.remove('fa-sun');
-    toggleIcon.children[1].classList.add('fa-moon');
+    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
     image1.src = 'img/undraw_Nature_fun_re_dark.svg';
     image2.src = 'img/undraw_adventure_map_dark.svg';
+}
+
+// light mode styles
+function lightMode() {
+    nav.style.backgroundColor = 'rgb(255 255 255 / 50%';
+    textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+    // console.log(toggleIcon.children);
+    toggleIcon.children[0].textContent = 'Light Mode';
+    toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+    image1.src = 'img/undraw_Nature_fun_re_light.svg';
+    image2.src = 'img/undraw_adventure_map_light.svg';
 }
 
 // switch theme dynamically
